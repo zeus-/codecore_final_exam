@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FinalExam1</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class= "container">
+  <nav class= "nav-main">
+  <%= link_to "Published Auctions", root_path, class: "btn btn-primary" %> 
+  <%= link_to "My Auctions", auctions_path, class: "btn btn-primary" %>  <%= link_to "New Auction", new_auction_path, class: "btn btn-primary" %> 
+  <%= link_to "Sign up", new_user_registration_path, class: "btn btn-info" %> 
+  <div class="pull-right"> 
+  <% if user_signed_in? %>
+    <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>  
+     Hola <%= current_user.user_name %>
+  <% else %>
+    <%= button_to "Sign in", new_user_session_path, class: "btn btn-primary" %>  
+  <% end %>
+    </div>
+  </nav>
+  
+    
+  <br>
+  <%= flash_messages %>
+  
+  <%= yield %>
+  </div>
+</body>
+</html>

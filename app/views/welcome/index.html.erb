@@ -1,0 +1,21 @@
+<h1> Listing all Published Auctions </h1>
+<%= link_to "Create a new Auc", new_auction_path, class: "btn btn-primary" %>
+<br>
+<br>
+<div class= "well">
+<% if @auctions.empty? %>
+  <h2> There are no auctions available at this time <h2>
+<% end %>      
+
+<% @auctions.each do |a| %>
+  <div class="pull-right">
+    <label class="<%= state_label(a.state) %>"> <%= a.state.capitalize %>
+    </label>
+  </div>
+  <h2> <%= link_to a.title, auction_path(a) %></h2>
+  <%= a.details %>
+  <p> Posted by: <%= a.user.user_name %> </p>
+  <p> Created <%= time_ago_in_words(a.created_at) %> ago</p>
+  <% end %>
+</div>
+

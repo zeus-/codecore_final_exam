@@ -1,0 +1,38 @@
+<h1> Auction  Show Page </h1>
+  <div class="pull-right">
+    <% if signed_in? && current_user.bids.present? && current_user.bids.last.price + 1 >= @auction.reserve_price && current_user != @auction.user%> 
+      <%= button_to "You can now reserve this item!", reserve_auction_path(@auction), class: "btn btn-default", method: :patch %>
+    <% end %>  
+  </div>  
+<h1> <%= @auction.title %></h1>
+<p> Item Deets: <%= @auction.details %>
+<p> Ends on: <%= @auction.ends_on %>
+<p> Reserve price: <%= @auction.reserve_price %>
+<p> Current bid <%= @auction.current_price %>
+<p> Posted: <%= time_ago_in_words(@auction.created_at) %> ago
+<br>
+<div class= "well" >
+<% if @bid.errors.any? %>
+  <h2> <%= @bid.errors.messages %> </h2>
+<% end %>
+
+<h2> 
+    <%= form_for [@auction, @bid], html: { class: "form-horizontal" }  do |f| %>
+
+  <div class="form-field">
+      <%= f.label :price, "Place your bid" %>
+      <%= f.number_field :price, class: "form-control" %>
+  </div>
+  <br>
+  <%= f.submit "bid", class: "btn btn-default" %>
+
+<% end %>
+</div>
+<ul class= "list-group">
+ <li class="list-group-item"> <h3> All bids </h3> </li>
+  <% @bids.each do |bid| %>
+    <li class= "list-group-item"> <%= bid.price %> 
+  <p> posted by: <%= bid.user.user_name %> </li>
+<% end %>
+
+
