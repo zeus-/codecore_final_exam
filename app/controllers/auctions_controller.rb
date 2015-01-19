@@ -4,7 +4,7 @@ class AuctionsController < ApplicationController
   before_action :find_auction, only: [:edit, :update, :destroy]
   
   def index    
-    @auctions = current_user.auctions.order("created_at DESC")
+    @auctions = current_user.auctions
   end
   
   def new   
@@ -23,20 +23,10 @@ class AuctionsController < ApplicationController
   end
 
   def show
-    @auction = Auction.find(params[:id] || params[:question_id])
+    @auction = Auction.find(params[:id])
     @bid =  Bid.new
     @bids = @auction.bids.all
     #@price = @auction.bids.last || Bid.new
-   # @answers = @question.answers.ordered_by_creation
-    #changed jan 6
-   # @comments = @answer.comments.recent_ten
-   # if user_signed_in? 
-    #  @vote = current_user.vote_for(@question) || Vote.new 
-    #  @favorite = current_user.favorite_for(@question) || Favorite.new
-   # else
-    #  @vote = Vote.new
-    #  @favorite = Favorite.new
-    #end
   end
 
   def edit
@@ -45,22 +35,21 @@ class AuctionsController < ApplicationController
   end
 
   def update
-    # handles the update action when sumbitted in the edit page
     if @auction.update_attributes(auction_params) 
       redirect_to @auction, notice: "Updated successfully"
     else
       flash.now[:alert] = "Update failed"
-      #render :edit
+      render :edit
     end
   end
   
   def destroy
-   # if @question.destroy 
-    #  redirect_to questions_path, notice: "Q deleted through '@question, method: :delete'"
-   # else
-   #   flash.now[:alert] = "Cant delete this Q"
-    #  render @question  
-   # end
+    if current_user == @auction.user && @auction.destroy 
+      redirect_to auctions_path, alert: "Auction deleted!"
+    else
+      flash.now[:alert] = "Delete failed"
+      render @auction  
+    end
   end
   
   def publish 
@@ -78,20 +67,10 @@ class AuctionsController < ApplicationController
       redirect_to @auction
       flash[:success] = "You have reserved this item!" 
     else
-      redirect_to @auction, alert:  "Sorry foo, already reserved!"
+      redirect_to @auction, alert:  "You already reserved this item!"
     end
   end
-  #def vote_up
-   # @question.increment!(:vote_count)
-   # session[:has_voted] = true
-   # redirect_to @question
-  #end
-
-  #def vote_down
-   # @question.decrement!(:vote_count)
-   # session[:has_voted] = true
-   # redirect_to @question
-  # end
+  
   #def reserve
    # @auction = Auction.find(params[:id])
    # @bid = @auction.bids.find(params[:bid_id])

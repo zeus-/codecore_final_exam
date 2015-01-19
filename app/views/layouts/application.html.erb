@@ -11,15 +11,21 @@
   <nav class= "nav-main">
   <%= link_to "Published Auctions", root_path, class: "btn btn-primary" %> 
   <%= link_to "My Auctions", auctions_path, class: "btn btn-primary" %>  <%= link_to "New Auction", new_auction_path, class: "btn btn-primary" %> 
-  <%= link_to "Sign up", new_user_registration_path, class: "btn btn-info" %> 
-  <div class="pull-right"> 
+  <%= link_to "All Users", profiles_path, class: "btn btn-primary" %> 
+
+  
   <% if user_signed_in? %>
+   <div class="pull-right"> 
     <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>  
      Hola <%= current_user.user_name %>
+      </div>
   <% else %>
-    <%= button_to "Sign in", new_user_session_path, class: "btn btn-primary" %>  
+     <div class="pull-right"> 
+       <%= button_to "Sign in", new_user_session_path, class: "btn btn-primary" %> 
+     </div>
+    <%= link_to "Sign Up NOW", new_user_registration_path, class: "btn btn-warning" %> 
   <% end %>
-    </div>
+  
   </nav>
   
     

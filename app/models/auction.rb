@@ -2,10 +2,11 @@ class Auction < ActiveRecord::Base
   belongs_to :user
   has_many :bids
   validates_presence_of :title
-  validates :reserve_price, presence: true
-
+  validates :reserve_price, presence: true, numericality: {greater_than_or_equal_to: 1}
+  default_scope order("created_at DESC")
   scope :published, -> { where(state: :published) }
   after_initialize :set_default_current_price 
+  
   state_machine :state, initial: :draft do
     event :publish do
       transition draft: :published

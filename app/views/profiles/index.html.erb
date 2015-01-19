@@ -1,0 +1,9 @@
+<h1> User Index </h1>
+<% if @users.empty? %>
+  <h2> This a Lonely app, no users available <h2>
+<% end %>      
+<% @users.each do |a| %>
+  <div class= "well">
+    <h4> User name: <%= link_to a.user_name, profile_path(a) %></h4>
+  </div> 
+<% end %>

@@ -7,9 +7,13 @@
     = f.text_field :details, class: 'form-control' 
   .form-field
     = f.label :ends_on 
-    = f.text_field :ends_on, class: 'form-control' 
+    %br
+    %p
+    = f.datetime_select :ends_on, class: 'form-control' 
+    %br
+    %br
   .form-field
     = f.label :reserve_price
-    = f.text_field :reserve_price, class: 'form-control' 
+    = f.number_field :reserve_price, class: 'form-control' 
   = f.submit (@auction.persisted? ? "Update" : "Save"), class: "btn btn-default"
 

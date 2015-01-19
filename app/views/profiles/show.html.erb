@@ -1,0 +1,14 @@
+<h1> User and bids collide! </h1>
+<h2> Profile for <%= @user.user_name %></h1>
+<h2> The Bid Index </h1>
+<% if @bids.empty? %>
+  <h2> This is a cheap guy, no bids available <h2>
+<% end %>      
+<% @bids.each do |a| %>
+  <div class= "well">
+    <h4> Bid: $ <%= a.price %>
+    <% if a.auction.present? %> 
+    for auction: <%= a.auction.title %></h4>
+    <% end %>
+  </div>
+<% end %>

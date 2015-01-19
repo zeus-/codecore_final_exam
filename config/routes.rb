@@ -6,8 +6,8 @@ FinalExam1::Application.routes.draw do
   end
   resources :auctions do
     patch :publish, :reserve, on: :member
-    
   end
+  resources :profiles
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -19,6 +19,20 @@ class BidsController < ApplicationController
       end
     end
   end
+
+  def destroy
+    @auction = Auction.find(params[:auction_id])
+    @bid = @auction.bids.find(params[:id])
+    if current_user == @bid.user && @bid.destroy 
+      if @auction.bids.present?
+        @auction.update_attributes(current_price: @auction.bids.first.price + 1)
+      end
+      redirect_to @auction, alert: "Bid deleted!"
+    else
+      flash.now[:alert] = "Delete failed"
+      redirect_to @auction  
+    end
+  end
   
   private
     def bids_params
