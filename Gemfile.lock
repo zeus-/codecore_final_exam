@@ -49,6 +49,10 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-screenshot (1.0.4)
+      capybara (>= 1.0, < 3)
+      colored
+      launchy
     capybara-webkit (1.3.1)
       capybara (>= 2.0.2, < 2.5.0)
       json
@@ -60,6 +64,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    colored (1.2)
     columnize (0.9.0)
     daemons (1.1.9)
     database_cleaner (1.3.0)
@@ -120,6 +125,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.6.1)
     minitest (4.7.5)
@@ -129,6 +135,15 @@ GEM
     orm_adapter (0.5.0)
     pg (0.18.1)
     polyglot (0.3.5)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-byebug (2.0.0)
+      byebug (~> 3.4)
+      pry (~> 0.10)
+    pry-rails (0.3.2)
+      pry (>= 0.9.10)
     quiet_assets (1.0.3)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
@@ -240,6 +255,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.1.1.0)
   byebug
   capybara
+  capybara-screenshot
   capybara-webkit
   coffee-rails (~> 4.0.0)
   database_cleaner
@@ -254,6 +270,8 @@ DEPENDENCIES
   jquery-ui-rails
   letter_opener
   pg
+  pry-byebug
+  pry-rails
   quiet_assets
   rails
   rspec-activemodel-mocks

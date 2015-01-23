@@ -19,7 +19,6 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
-gem 'byebug'
 gem 'state_machine'
 gem 'thin'
 gem 'haml-rails'
@@ -49,6 +48,9 @@ group :development, :test do
 # if having trouble with rspec its install this:
   gem 'rspec-its', '~> 1.0.0.pre'
   gem 'factory_girl_rails'
+  gem 'pry-rails'
+  gem 'pry-byebug'
+  gem 'byebug'
 end
 group :development do
   gem 'hirb'
@@ -60,6 +62,7 @@ group :development do
 end
 group :test do
   gem 'capybara-webkit'
+  gem 'capybara-screenshot'
   gem 'capybara'
   gem 'simplecov', require: false
 end

@@ -1,13 +1,16 @@
 <h1> Listing all Published Auctions </h1>
 <%= link_to "Create a new Auc", new_auction_path, class: "btn btn-primary" %>
 <br>
+<%= will_paginate @auctions, renderer: BootstrapPagination::Rails %>
 <br>
-<div class= "well">
 <% if @auctions.empty? %>
+<div class= "well">
   <h2> There are no auctions available at this time <h2>
+</div>
 <% end %>      
 
 <% @auctions.each do |a| %>
+<div class="well">
   <div class="pull-right">
     <label class="<%= state_label(a.state) %>"> <%= a.state.capitalize %>
     </label>
@@ -16,6 +19,10 @@
   <%= a.details %>
   <p> Posted by: <%= a.user.user_name %> </p>
   <p> Created <%= time_ago_in_words(a.created_at) %> ago</p>
-  <% end %>
 </div>
+<br>
+<% end %>
+  
+  
+
 

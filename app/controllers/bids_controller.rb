@@ -4,18 +4,20 @@ class BidsController < ApplicationController
   def create
     @auction = Auction.find(params[:auction_id]) 
     @bid = @auction.bids.new(bids_params)
-   
-    if @bid.price != nil && current_user != @auction.user && @bid.price > @auction.current_price 
-      @bid.user = current_user
-      @bid.save
-      @auction.update_attributes(current_price: @bid.price + 1)
-      redirect_to @auction 
-    else
-      redirect_to @auction 
-      if current_user == @auction.user 
-        flash[:alert] = "You cant bid on you own auction, fool"
+    @bid.user = current_user
+    respond_to do |format| 
+      if valid_bid     
+        @auction.update_attributes(current_price: @bid.price + 1)
+        format.html { redirect_to @auction, notice: "Bid created happilly!" }
+        format.js { render } 
       else
-        flash[:alert]= "Please enter a valid number that is higher than the current bid!"
+        if current_user == @auction.user 
+          format.html { redirect_to @auction, alert:  "You cant bid on you own auction, fool" }
+          format.js { render js: "alert('You cant bid on you own auction, fool');" } 
+        else
+          format.html { render "auctions/show", alert: "Please enter a valid number that is higher than the current bid!" }
+          format.js { render js: "alert('Please enter a valid number that is higher than the current bid!');" }
+        end
       end
     end
   end
@@ -30,11 +32,14 @@ class BidsController < ApplicationController
       redirect_to @auction, alert: "Bid deleted!"
     else
       flash.now[:alert] = "Delete failed"
-      redirect_to @auction  
+      render "auctions/show"  
     end
   end
   
   private
+    def valid_bid 
+       @bid.price.present? && current_user != @auction.user && @bid.price > @auction.current_price && @bid.save  
+    end
     def bids_params
       params.require(:bid).permit([:price])
     end

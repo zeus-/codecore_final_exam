@@ -3,7 +3,7 @@ FactoryGirl.define do
     sequence(:title) { |number| "#{Faker::Company.bs} #{number}" }
     details Faker::Lorem.sentence
     ends_on { Date.today - Faker::Number.number(3).to_i.days }
-    reserve_price Faker::Number.number(2)
+    reserve_price 100
     current_price 0
     association :user, factory: :user
   end

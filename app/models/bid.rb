@@ -4,6 +4,12 @@ class Bid < ActiveRecord::Base
   belongs_to :auction
   validates :price, presence: true, numericality: {greater_than_or_equal_to: 0} 
   default_scope order("created_at DESC")
+  #delegate :user, to: :auction
+  # def user
+  #   auction.user
+  # end
+  
+
 
   #validates_numericality_of :price, :greater_than => Proc.new { |r| r.auction.current_price } 
   #after_initialize :set_default_current_price 

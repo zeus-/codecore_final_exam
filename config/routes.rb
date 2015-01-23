@@ -4,10 +4,10 @@ FinalExam1::Application.routes.draw do
   resources :auctions do
     resources :bids, only: [:create, :destroy]
   end
-  resources :auctions do
+  resources :auctions, only: [] do
     patch :publish, :reserve, on: :member
   end
-  resources :profiles
+  resources :profiles, only: [:index, :show]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

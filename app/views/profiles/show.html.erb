@@ -4,6 +4,7 @@
 <% if @bids.empty? %>
   <h2> This is a cheap guy, no bids available <h2>
 <% end %>      
+<%= will_paginate @bids, renderer: BootstrapPagination::Rails %>
 <% @bids.each do |a| %>
   <div class= "well">
     <h4> Bid: $ <%= a.price %>

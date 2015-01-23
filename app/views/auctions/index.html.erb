@@ -3,6 +3,8 @@
 <%= link_to "Create a new Auc", new_auction_path, class: "btn btn-primary" %>
 <br>
 <br>
+<%= will_paginate @auctions, renderer: BootstrapPagination::Rails %>
+
 <% if @auctions.empty? %>
   <h2> you have made no auctions <h2>
 <% end %>      

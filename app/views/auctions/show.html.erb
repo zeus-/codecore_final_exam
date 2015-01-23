@@ -11,9 +11,9 @@
   </div>  
 <h1> <%= @auction.title %></h1>
 <p> Item Deets: <%= @auction.details %>
-<p> Ends on: <%= @auction.ends_on %>
+<p> Ends in: <%= time_ago_in_words(@auction.ends_on) if @auction.ends_on.present?  %>
 <p> Reserve price: <%= @auction.reserve_price %>
-<p> Current bid <%= @auction.current_price %>
+<p> Current bid <span class="current_price"><%= @auction.current_price %></span>
 <p> Posted: <%= time_ago_in_words(@auction.created_at) %> ago
 <% if current_user == @auction.user %>
   <%= link_to "Edit", edit_auction_path(@auction) %>
@@ -27,7 +27,7 @@
 <% end %>
 
 <h2> 
-    <%= form_for [@auction, @bid], html: { class: "form-horizontal" }  do |f| %>
+    <%= form_for [@auction, @bid], html: { class: "form-horizontal" }, remote: true  do |f| %>
 
   <div class="form-field">
       <%= f.label :price, "Place your bid" %>
@@ -38,18 +38,10 @@
 
 <% end %>
 </div>
-<ul class= "list-group">
- <li class="list-group-item"> <h3> All bids </h3> </li>
+<h3> All bids </h3>
+<ul class="list-group" id= "bid_list" >
   <% @bids.each do |bid| %>
-    <li class= "list-group-item"> <%= bid.price %> 
-    
-    <% if bid.user == current_user %>  
-    <div class= "pull-right">
-      <%= button_to "x", [@auction, bid] , method: :delete, class: "btn btn-danger" %>
-    </div>
-    <% end %>
-    <p> posted by: <%= bid.user.user_name %> 
-    </li>
-<% end %>
-
-
+    <%= render "/bids/bid", bid: bid %>
+  <% end %>
+  <%= will_paginate @bids, renderer: BootstrapPagination::Rails %>
+</ul>

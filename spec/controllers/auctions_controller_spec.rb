@@ -90,17 +90,20 @@ describe AuctionsController, :type => :controller do
 
   describe "#update" do
     let(:auction) { create(:auction, user: user) }
-    it "updates the appropriate auction with the id that is passed" do
+    def update_request
       patch :update, id: auction.id, auction: { title: "New title" }
+    end
+    it "updates the appropriate auction with the id that is passed" do
+      update_request
       auction.reload
       expect(auction.title).to match /New title/i
     end
     it "redirects to the auction show page after a successful update" do
-      patch :update, id: auction.id, auction: { title: "New title" }
+      update_request
       expect(response).to redirect_to(auction)
     end
     it "sets a flash msg after successful update" do
-      patch :update, id: auction.id, auction: { title: "New title" }
+      update_request
       expect(flash[:notice]).to be
     end
     it "renders the edit template after a failed update" do
@@ -111,14 +114,19 @@ describe AuctionsController, :type => :controller do
 
   describe "#destroy" do
     let!(:auction) { create(:auction, user: user) } 
+    def delete_request
+      delete :destroy, id: auction.id
+    end
     it "should destroy the appropriate auction from the db " do
-      expect do
-      delete :destroy, id: auction.id 
-      end.to change { Auction.count }.by(-1)
+      expect { delete_request }.to change { Auction.count }.by(-1)
     end
     it "should redirect to the auctions index after a successful delete" do
-      delete :destroy, id: auction.id
+      delete_request
       expect(response).to redirect_to(auctions_path)
+    end
+    it "sets a flash msg after successful deletion" do
+      delete_request
+      expect(flash[:alert]).to be
     end
   end
   

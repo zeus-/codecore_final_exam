@@ -4,7 +4,7 @@ class AuctionsController < ApplicationController
   before_action :find_auction, only: [:edit, :update, :destroy]
   
   def index    
-    @auctions = current_user.auctions
+    @auctions = current_user.auctions.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
   end
   
   def new   
@@ -25,7 +25,7 @@ class AuctionsController < ApplicationController
   def show
     @auction = Auction.find(params[:id])
     @bid =  Bid.new
-    @bids = @auction.bids.all
+    @bids = @auction.bids.paginate(:page => params[:page], :per_page => 5) 
     #@price = @auction.bids.last || Bid.new
   end
 

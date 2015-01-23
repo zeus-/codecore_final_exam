@@ -5,7 +5,7 @@ describe BidsController, :type => :controller do
   let(:auction) { create(:auction) }
   before { sign_in user } 
 
-  describe "#create" do 
+  describe "#create", remote: true do 
     context "user tries to post a bid thats lower than the current higest bid" do
       def first_bid
         post :create, auction_id: auction.id, bid: { price: 200 }
@@ -17,11 +17,11 @@ describe BidsController, :type => :controller do
         first_bid
         expect { low_bid }.to_not change { Bid.count }
       end
-      it "sets a flash alert" do
+       it "sets a flash alert", remote: true do
         first_bid
-        low_bid
-        expect(flash[:alert]).to be
-      end
+         low_bid
+         expect(js: "alert").to be
+       end
     end
     
     context "with a valid bid" do
@@ -50,7 +50,7 @@ describe BidsController, :type => :controller do
     end
     # context "the auction creator bids on his/her own auction" do
     #   def own_bid
-    #     post :create, auction_id: auction.id, user_id: auction.user, bid: { price: 100 }
+    #     post :create, auction_id: auction, user_id: auction.user, bid: { price: 100 }
     #   end
     #   it "doesnt create a bid in db" do
     #     expect { own_bid }.to_not change { Bid.count }

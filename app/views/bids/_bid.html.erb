@@ -1,0 +1,11 @@
+<li class= "list-group-item", id= "<%= dom_id(bid) %>" > 
+  <%= bid.price %> 
+  <% if bid.user == current_user %>  
+    <div class= "pull-right">
+      <%= button_to "x", [@auction, bid] , method: :delete, class: "btn btn-danger" %>
+    </div>
+  <% end %>
+    <p> posted by: <%= bid.user.user_name %> 
+</li>
+
+
