@@ -28,7 +28,9 @@ class BidsController < ApplicationController
     if current_user == @bid.user && @bid.destroy 
       if @auction.bids.present?
         @auction.update_attributes(current_price: @auction.bids.first.price + 1)
-      end
+        else
+        @auction.update_attributes(current_price: 0)
+        end
       redirect_to @auction, alert: "Bid deleted!"
     else
       flash.now[:alert] = "Delete failed"

@@ -1,6 +1,5 @@
 <h1> Auction  Show Page </h1>
   <div class="pull-right">
-    <%# if signed_in? && current_user.bids.present? && current_user.bids.last.price + 1 >=  @auction.reserve_price  && current_user != @auction.user && @auction.bids.first.user == current_user %> 
       <% if @auction.bids.present? && @auction.bids.first.user == current_user && (@auction.bids.first.price + 1) >= @auction.reserve_price %>
       <%= button_to "You can now reserve this item!", reserve_auction_path(@auction), class: "btn btn-default", method: :patch %>
       <% elsif @auction.reserve_met? %>

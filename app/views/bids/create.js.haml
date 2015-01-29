@@ -2,3 +2,5 @@ $('#bid_price').val("");
 $('#bid_list').prepend("#{j render 'bid', bid: @bid}");
 $("##{dom_id(@bid)}").hide().fadeIn(500);
 $(".current_price").html("#{@bid.auction.current_price}");
+if ("#{@auction.bids.present? && @auction.bids.first.user == current_user && (@auction.bids.first.price + 1) >= @auction.reserve_price}") { $('h3').first().html('<form action="/help!" class="button_to" method="post"><div><input name="_method" type="hidden" value="patch"><input class="btn btn-default" type="submit" value="You can now reserve this item!"><input name="authenticity_token" type="hidden" value="NgMHJjEUNrh+SN0UTW8USFpYv9mGoPcFObHhddMFMRw="></div></form>') }
+
