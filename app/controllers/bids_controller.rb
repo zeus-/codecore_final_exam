@@ -5,6 +5,8 @@ class BidsController < ApplicationController
     @auction = Auction.find(params[:auction_id]) 
     @bid = @auction.bids.new(bids_params)
     @bid.user = current_user
+    alert1 = "alert('You cant bid on you own auction, fool');"
+    alert2 = "alert('Please enter a valid number that is higher than the current bid!');"  
     respond_to do |format| 
       if valid_bid     
         @auction.update_attributes(current_price: @bid.price + 1)
@@ -12,11 +14,11 @@ class BidsController < ApplicationController
         format.js { render } 
       else
         if current_user == @auction.user 
-          format.html { redirect_to @auction, alert:  "You cant bid on you own auction, fool" }
-          format.js { render js: "alert('You cant bid on you own auction, fool');" } 
+          format.html { redirect_to @auction, alert: alert1 }
+          format.js { render js: alert1 } 
         else
-          format.html { render "auctions/show", alert: "Please enter a valid number that is higher than the current bid!" }
-          format.js { render js: "alert('Please enter a valid number that is higher than the current bid!');" }
+          format.html { render "auctions/show", alert: alert2  }
+          format.js { render js: alert2 }
         end
       end
     end

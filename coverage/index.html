@@ -14,26 +14,26 @@
       <img src="./assets/0.8.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2015-02-27T11:19:29-08:00">2015-02-27T11:19:29-08:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2015-02-27T11:33:42-08:00">2015-02-27T11:33:42-08:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">95.25%</span></span>
+    (<span class="covered_percent"><span class="green">95.28%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.23
+         2.27
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>16</b> files in total.
-    <b>337</b> relevant lines. 
-    <span class="green"><b>321</b> lines covered</span> and
+    <b>339</b> relevant lines. 
+    <span class="green"><b>323</b> lines covered</span> and
     <span class="red"><b>16</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -72,12 +72,12 @@
       
       <tr>
         <td class="strong"><a href="#7c0b45761c0a68102b6d4b6fb60b275674f3291f" class="src_link" title="app/controllers/bids_controller.rb">app/controllers/bids_controller.rb</a></td>
-        <td class="green strong">90.32 %</td>
-        <td>48</td>
-        <td>31</td>
-        <td>28</td>
+        <td class="green strong">90.91 %</td>
+        <td>50</td>
+        <td>33</td>
+        <td>30</td>
         <td>3</td>
-        <td>4.4</td>
+        <td>4.7</td>
       </tr>
       
       <tr>
@@ -925,10 +925,10 @@
         <div class="source_table" id="7c0b45761c0a68102b6d4b6fb60b275674f3291f">
   <div class="header">
     <h3>app/controllers/bids_controller.rb</h3>
-    <h4><span class="green">90.32 %</span> covered</h4>
+    <h4><span class="green">90.91 %</span> covered</h4>
     <div>
-      <b>31</b> relevant lines. 
-      <span class="green"><b>28</b> lines covered</span> and
+      <b>33</b> relevant lines. 
+      <span class="green"><b>30</b> lines covered</span> and
       <span class="red"><b>3</b> lines missed.</span>
     </div>
   </div>
@@ -981,244 +981,256 @@
         <li class="covered" data-hits="10" data-linenumber="8">
           <span class="hits">10</span>
           
-          <code class="ruby">    respond_to do |format| </code>
+          <code class="ruby">    alert1 = &quot;alert(&#39;You cant bid on you own auction, fool&#39;);&quot;</code>
         </li>
       
         <li class="covered" data-hits="10" data-linenumber="9">
           <span class="hits">10</span>
           
+          <code class="ruby">    alert2 = &quot;alert(&#39;Please enter a valid number that is higher than the current bid!&#39;);&quot;  </code>
+        </li>
+      
+        <li class="covered" data-hits="10" data-linenumber="10">
+          <span class="hits">10</span>
+          
+          <code class="ruby">    respond_to do |format| </code>
+        </li>
+      
+        <li class="covered" data-hits="10" data-linenumber="11">
+          <span class="hits">10</span>
+          
           <code class="ruby">      if valid_bid     </code>
-        </li>
-      
-        <li class="covered" data-hits="7" data-linenumber="10">
-          <span class="hits">7</span>
-          
-          <code class="ruby">        @auction.update_attributes(current_price: @bid.price + 1)</code>
-        </li>
-      
-        <li class="covered" data-hits="14" data-linenumber="11">
-          <span class="hits">14</span>
-          
-          <code class="ruby">        format.html { redirect_to @auction, notice: &quot;Bid created happilly!&quot; }</code>
         </li>
       
         <li class="covered" data-hits="7" data-linenumber="12">
           <span class="hits">7</span>
           
+          <code class="ruby">        @auction.update_attributes(current_price: @bid.price + 1)</code>
+        </li>
+      
+        <li class="covered" data-hits="14" data-linenumber="13">
+          <span class="hits">14</span>
+          
+          <code class="ruby">        format.html { redirect_to @auction, notice: &quot;Bid created happilly!&quot; }</code>
+        </li>
+      
+        <li class="covered" data-hits="7" data-linenumber="14">
+          <span class="hits">7</span>
+          
           <code class="ruby">        format.js { render } </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="13">
+        <li class="never" data-hits="" data-linenumber="15">
           
           
           <code class="ruby">      else</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="14">
+        <li class="covered" data-hits="3" data-linenumber="16">
           <span class="hits">3</span>
           
           <code class="ruby">        if current_user == @auction.user </code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="15">
+        <li class="covered" data-hits="2" data-linenumber="17">
           <span class="hits">2</span>
           
-          <code class="ruby">          format.html { redirect_to @auction, alert:  &quot;You cant bid on you own auction, fool&quot; }</code>
+          <code class="ruby">          format.html { redirect_to @auction, alert: alert1 }</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="16">
+        <li class="covered" data-hits="1" data-linenumber="18">
           <span class="hits">1</span>
           
-          <code class="ruby">          format.js { render js: &quot;alert(&#39;You cant bid on you own auction, fool&#39;);&quot; } </code>
+          <code class="ruby">          format.js { render js: alert1 } </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="17">
+        <li class="never" data-hits="" data-linenumber="19">
           
           
           <code class="ruby">        else</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="18">
+        <li class="covered" data-hits="4" data-linenumber="20">
           <span class="hits">4</span>
           
-          <code class="ruby">          format.html { render &quot;auctions/show&quot;, alert: &quot;Please enter a valid number that is higher than the current bid!&quot; }</code>
+          <code class="ruby">          format.html { render &quot;auctions/show&quot;, alert: alert2  }</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="19">
+        <li class="covered" data-hits="2" data-linenumber="21">
           <span class="hits">2</span>
           
-          <code class="ruby">          format.js { render js: &quot;alert(&#39;Please enter a valid number that is higher than the current bid!&#39;);&quot; }</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="20">
-          
-          
-          <code class="ruby">        end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="21">
-          
-          
-          <code class="ruby">      end</code>
+          <code class="ruby">          format.js { render js: alert2 }</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="22">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">        end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="23">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="24">
           
           
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="25">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def destroy</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="26">
-          <span class="hits">3</span>
-          
-          <code class="ruby">    @auction = Auction.find(params[:auction_id])</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="27">
-          <span class="hits">3</span>
-          
-          <code class="ruby">    @bid = @auction.bids.find(params[:id])</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="28">
-          <span class="hits">3</span>
-          
-          <code class="ruby">    if current_user == @bid.user &amp;&amp; @bid.destroy </code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="29">
-          <span class="hits">3</span>
-          
-          <code class="ruby">      if @auction.bids.present?</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="30">
-          
-          
-          <code class="ruby">        @auction.update_attributes(current_price: @auction.bids.first.price + 1)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="31">
-          
-          
-          <code class="ruby">        else</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="32">
-          <span class="hits">3</span>
-          
-          <code class="ruby">        @auction.update_attributes(current_price: 0)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="33">
-          
-          
-          <code class="ruby">        end</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="34">
-          <span class="hits">3</span>
-          
-          <code class="ruby">      redirect_to @auction, alert: &quot;Bid deleted!&quot;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="35">
-          
-          
-          <code class="ruby">    else</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="36">
-          
-          
-          <code class="ruby">      flash.now[:alert] = &quot;Delete failed&quot;</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="37">
-          
-          
-          <code class="ruby">      render &quot;auctions/show&quot;  </code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="38">
-          
-          
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="39">
+        <li class="never" data-hits="" data-linenumber="25">
           
           
           <code class="ruby">  end</code>
         </li>
       
+        <li class="never" data-hits="" data-linenumber="26">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="27">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def destroy</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="28">
+          <span class="hits">3</span>
+          
+          <code class="ruby">    @auction = Auction.find(params[:auction_id])</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="29">
+          <span class="hits">3</span>
+          
+          <code class="ruby">    @bid = @auction.bids.find(params[:id])</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="30">
+          <span class="hits">3</span>
+          
+          <code class="ruby">    if current_user == @bid.user &amp;&amp; @bid.destroy </code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="31">
+          <span class="hits">3</span>
+          
+          <code class="ruby">      if @auction.bids.present?</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="32">
+          
+          
+          <code class="ruby">        @auction.update_attributes(current_price: @auction.bids.first.price + 1)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="33">
+          
+          
+          <code class="ruby">        else</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="34">
+          <span class="hits">3</span>
+          
+          <code class="ruby">        @auction.update_attributes(current_price: 0)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="35">
+          
+          
+          <code class="ruby">        end</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="36">
+          <span class="hits">3</span>
+          
+          <code class="ruby">      redirect_to @auction, alert: &quot;Bid deleted!&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="37">
+          
+          
+          <code class="ruby">    else</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="38">
+          
+          
+          <code class="ruby">      flash.now[:alert] = &quot;Delete failed&quot;</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="39">
+          
+          
+          <code class="ruby">      render &quot;auctions/show&quot;  </code>
+        </li>
+      
         <li class="never" data-hits="" data-linenumber="40">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="41">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="42">
           
           
           <code class="ruby">  </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="41">
+        <li class="covered" data-hits="1" data-linenumber="43">
           <span class="hits">1</span>
           
           <code class="ruby">  private</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="42">
+        <li class="covered" data-hits="1" data-linenumber="44">
           <span class="hits">1</span>
           
           <code class="ruby">    def valid_bid </code>
         </li>
       
-        <li class="covered" data-hits="10" data-linenumber="43">
+        <li class="covered" data-hits="10" data-linenumber="45">
           <span class="hits">10</span>
           
           <code class="ruby">       @bid.price.present? &amp;&amp; current_user != @auction.user &amp;&amp; @bid.price &gt; @auction.current_price &amp;&amp; @bid.save  </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="44">
+        <li class="never" data-hits="" data-linenumber="46">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="45">
+        <li class="covered" data-hits="1" data-linenumber="47">
           <span class="hits">1</span>
           
           <code class="ruby">    def bids_params</code>
         </li>
       
-        <li class="covered" data-hits="10" data-linenumber="46">
+        <li class="covered" data-hits="10" data-linenumber="48">
           <span class="hits">10</span>
           
           <code class="ruby">      params.require(:bid).permit([:price])</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="47">
+        <li class="never" data-hits="" data-linenumber="49">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="48">
+        <li class="never" data-hits="" data-linenumber="50">
           
           
           <code class="ruby">end</code>
